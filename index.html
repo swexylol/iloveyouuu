@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>seni seviyorum ece <3</title>
+
+<style>
+body{
+  margin:0;
+  background:linear-gradient(135deg,#ff6fa3,#ffc3da);
+  font-family: 'Segoe UI', sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+  color:white;
+  text-align:center;
+}
+
+/* Çiçekler */
+.flower{
+  position:absolute;
+  top:-50px;
+  font-size:24px;
+  animation:fall linear infinite;
+  opacity:0.8;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+  }
+}
+
+.container{
+  max-width:700px;
+  padding:40px;
+  cursor:pointer;
+  backdrop-filter:blur(6px);
+}
+
+h1{
+  font-size:36px;
+  margin-bottom:20px;
+  animation:fade 1.2s ease;
+}
+
+p{
+  font-size:22px;
+  line-height:1.6;
+  animation:fade 1.2s ease;
+}
+
+.heart{
+  font-size:60px;
+  color:#00ff88;
+  animation:beat 1s infinite;
+}
+
+@keyframes beat{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.25);}
+  100%{transform:scale(1);}
+}
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.small{
+  margin-top:40px;
+  font-size:14px;
+  opacity:0.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" onclick="nextText()">
+  <div id="content">
+    <h1>hazir misin ? 🌸</h1>
+    <p>Tıkla…</p>
+  </div>
+</div>
+
+<script>
+
+/* Çiçek oluşturma */
+function createFlower(){
+  const flower = document.createElement("div");
+  flower.classList.add("flower");
+  flower.innerHTML = "🌸";
+  flower.style.left = Math.random()*100 + "vw";
+  flower.style.animationDuration = (5 + Math.random()*5) + "s";
+  document.body.appendChild(flower);
+  setTimeout(()=>{ flower.remove(); },10000);
+}
+
+setInterval(createFlower,500);
+
+const texts = [
+  "hayatimda verdigim en guzel karar seni sevmekti…",
+  "aramizda kilometreler olabilir",
+  "ama kalbim hep senin yaninda atiyor.",
+  "keske sana sadece bi site yazmak yerine gercek bi hediye alabilsem…",
+  "ama sunu bil ece",
+  "sana olan sevgim hicbir mesafeye sigmaz",
+  "iyiki varsin ece.",
+  "seni bugun degil hergun seviyorum"
+];
+
+let index = 0;
+
+function nextText(){
+  if(index < texts.length){
+    document.getElementById("content").innerHTML =
+      `<h1>${texts[index]}</h1>
+       <div class="heart">💚</div>
+       <div class="small">(devam etmek icin tikla)</div>`;
+    index++;
+  } else {
+    document.getElementById("content").innerHTML =
+      `<h1>sevgililer gunumuz kutlu olsun ece 💘</h1>
+       <p>mesafeler bizi ayiramaz</p>
+       <div class="heart">💚</div>`;
+  }
+}
+
+</script>
+
+</body>
+</html>
